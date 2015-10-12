@@ -9,8 +9,24 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
+    <EditText
+        android:id="@+id/number_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+
+        android:id="@+id/submit_button"
+        android:text="@string/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="65dp" />
+
     <TextView
-        android:text="@string/hello_world"
+        android:paddingTop="100dp"
+        android:id="@+id/result_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
