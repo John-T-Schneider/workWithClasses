@@ -1,5 +1,6 @@
 package edu.kvcc.cis298.workwithclasses.workwithclasses;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mResult;
     private EditText mInput;
     private Button mSubmit;
+    private Button mActivity;
 
     private Calc myCalc;
 
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         mResult = (TextView) findViewById(R.id.result_text_view);
         mInput = (EditText) findViewById(R.id.number_input);
         mSubmit = (Button) findViewById(R.id.submit_button);
+        mActivity = (Button) findViewById(R.id.new_activity_button);
 
         myCalc = new Calc();
 
@@ -52,6 +55,17 @@ public class MainActivity extends AppCompatActivity {
                 result = myCalc.multiplyByFour(input);
                 mResult.setText(Double.toString(result));
             }
+        });
+
+        mActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent = pass in who you are (main activity) and we would like to start the
+                //sub activity. so on click it starts sub activity.
+                Intent i = new Intent(MainActivity.this, SubActivity.class);
+                startActivity(i);
+            }
+
         });
 
 
