@@ -6,17 +6,43 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class SubActivity extends AppCompatActivity {
 
+    private TextView mMessage;
+    private boolean mBeenThereDoneThat;
+
     public static Intent newIntent(Context packageContext, String theMessage){
         Intent i = new Intent(packageContext, SubActivity.class);
+        i.putExtra("the_sub_key", theMessage);
+        return i;
+    }
+
+    public static boolean userWentToSubActivity( Intent result){
+        //returning result you are getting from the intent; declared in sub activity as been_there
+        return result.getBooleanExtra("been_there", false);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub);
+
+        mMessage = (TextView) findViewById(R.id.message);
+
+        String theMessageString = getIntent().getStringExtra("the_sub_key");
+        mMessage.setText(theMessageString);
+
+        mBeenThereDoneThat = true;
+
+        Intent data = new Intent();
+        data.putExtra("been_there", mBeenThereDoneThat);
+        //set result will pass the result back to the previous activity
+        //result ok will get sent to main activity
+        //since main actiity will not know been_there, we write another static method so it knows
+        //the key
+        setResult(RESULT_OK, data);
     }
 
     @Override
